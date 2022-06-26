@@ -1,0 +1,44 @@
+.ta-c {
+  text-align: center;
+}
+
+.full-h-vh {
+  height: 100vh;
+}
+
+.flex-center {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.login-input{
+  width: 300px;
+  height:300px;
+  border: 1px solid #999999;
+  padding-top:30px;
+}
+
+.login-input input{
+  height:30px;
+  outline: none;
+  display: inline-block;
+  margin: 10px 0;
+  padding: 0 5px;
+}
+
+.mg-t10{
+  margin-top: 10px;
+}
+
+button {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #999999;
+  line-height: unset;
+  margin: 0;
+  padding: 4px 20px ;
+  text-align: unset;
+}
