@@ -1,0 +1,7 @@
+{
+  "jwtSecret": "linjielinlinToken",
+  // jwt time in seconds
+  "jwtExpiration": 86400,
+  // lock time in seconds
+  "lockExpiration": 300
+}

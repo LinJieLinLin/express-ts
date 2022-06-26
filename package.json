@@ -1,0 +1,13 @@
+{
+  "name": "express-ts",
+  "version": "0.1.0",
+  "description": "Node.js Express TypeScript application.",
+  "author": "linjielinlin <993353454@qq.com>",
+  "license": "Apache-2.0",
+  "keywords": [
+    "express",
+    "typescript",
+    "mongoose"
+  ],
+  "devDependencies": {}
+}
