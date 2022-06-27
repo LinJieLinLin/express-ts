@@ -5,6 +5,7 @@ import fly from 'flyio'
 import { toast } from 'react-toastify'
 import { IReqData, IRes } from '../types/common'
 import { Msg } from './msg'
+import { Sleep } from './project'
 
 // let noToast = false
 // let toast = (...argData: any[]) => {
@@ -18,7 +19,7 @@ import { Msg } from './msg'
 const suCode = ',0,1,'
 fly.config.timeout = Number(process.env.REACT_APP_TIMEOUT) || 10000
 fly.config.baseURL =
-  process.env.REACT_APP_API_URL || 'http://localhost:3000/api'
+  process.env.REACT_APP_API_URL || 'http://localhost:3001/api'
 
 fly.interceptors.request.use((request: any) => {
   // console.debug('request：', request)
@@ -32,6 +33,7 @@ fly.interceptors.response.use(
     if (suCode.match(',' + res.code + ',')) {
       if (res.code === 1) {
         toast(Msg[1])
+        await Sleep(2000)
       }
       if (res?.token) {
         localStorage.setItem('tk', '.web.' + res.token)
