@@ -1,5 +1,12 @@
 # express-ts
 
+## Installation
+
+```shell
+npm i pnpm -g
+pnpm initPro
+```
+
 ## Description
 
 - [express-ts-server](https://github.com/LinJieLinLin/express-ts/blob/master/packages/serve/README.md)

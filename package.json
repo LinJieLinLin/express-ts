@@ -9,5 +9,17 @@
     "typescript",
     "mongoose"
   ],
-  "devDependencies": {}
+  "scripts": {
+    "postinstall": "npx husky install",
+    "initPro": "pnpm i && cd packages/serve/ && pnpm i && cd ../web && pnpm i",
+    "lint": "eslint ./packages/**/src/**/*"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "commitlint": "^17.0.3",
+    "lint-staged": "^13.0.3"
+  }
 }
