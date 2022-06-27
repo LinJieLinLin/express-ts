@@ -38,7 +38,7 @@ router.all(
       ResJson(req, res, user, code, '', token)
       return
     } catch (e) {
-      ResJson(req, res, {}, Number(e))
+      ResJson(req, res, {}, Number(e) || 5000)
       return
     }
   }

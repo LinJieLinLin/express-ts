@@ -13,9 +13,10 @@
   ],
   "scripts": {
     "tsc": "tsc",
-    "build": "rimraf dist && tsc -b && cp .env* dist",
+    "build": "rimraf dist && tsc -b && cp .env* dist && cp -rf ./config dist",
     "dev": "cross-env NODE_ENV=development nodemon --config nodemon.json",
     "start": "cross-env NODE_ENV=development ts-node src/server.ts",
+    "lint": "eslint",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --verbose",
     "coverage": "cross-env NODE_ENV=test rimraf coverage && jest --coverage --silent --detectOpenHandles --forceExit"
   },

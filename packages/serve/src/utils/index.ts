@@ -2,7 +2,6 @@ import { IRes } from 'types/common'
 import { Request, Response } from 'express'
 import { GetJwt } from './jwt'
 import { IUsername } from 'service/user/types'
-import config from 'config'
 import { Msg } from './../msg'
 
 interface ICacheObj {
@@ -16,8 +15,8 @@ export const ResJson = async (
   res: Response,
   data: any,
   code = 0,
-  msg: string = '',
-  token: string = ''
+  msg = '',
+  token = ''
 ) => {
   // auto cerate new token if token is expired
   if (!token && req.needNewToken) {
@@ -27,7 +26,7 @@ export const ResJson = async (
   }
   // locked user tips
   if (code === 1000) {
-    const min = Number(config.get('lockExpiration') || 1) / 60
+    const min = Number(process.env.LOCK_EXPIRATION || 1) / 60
     msg = Msg[code] + `,Please try again in ${min} minutes`
   }
   const re: IRes = {
@@ -57,6 +56,7 @@ export const SafeData = (
     for (let i = 0; i < temLen - 1; i++) {
       if (typeof argData[temKey[i]] !== 'object') {
         if (argSetValueForce) {
+          console.error(`${temKey[i]} is not object`)
         }
         return argValue
       }

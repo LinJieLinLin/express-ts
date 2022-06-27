@@ -1,5 +1,4 @@
 import { IUsername } from './types'
-import config from 'config'
 import { GetCacheData, SetCacheData } from '../../utils/index'
 import User, { IUser } from '../../models/User'
 import bcrypt from 'bcryptjs'
@@ -28,7 +27,7 @@ export const CheckUser = async (userInfo: IUser) => {
 
   const { username, password } = userInfo
   try {
-    let user = await User.findOne({ username })
+    const user = await User.findOne({ username })
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password)
       // check 5min 3 error
@@ -39,7 +38,7 @@ export const CheckUser = async (userInfo: IUser) => {
         const temLen = cacheUser.errorRecord.length || 0
         if (temLen > 3 && cacheUser.errorRecord[temLen - 1] > last5Min) {
           cacheUser.lockDate =
-            now + Number(config.get('lockExpiration') || 1) * 1000
+            now + Number(process.env.LOCK_EXPIRATION || 1) * 1000
           cacheUser.errorRecord = []
           SetCacheData('username.' + userInfo?.username, cacheUser)
           return Promise.reject(1000)
@@ -52,7 +51,8 @@ export const CheckUser = async (userInfo: IUser) => {
       return null
     }
   } catch (e) {
-    return Promise.reject(1003)
+    console.error(e)
+    return Promise.reject(5000)
   }
 }
 

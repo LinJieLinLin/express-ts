@@ -7,7 +7,7 @@ export const GetJwt = (argData: ITokenInfo) => {
     jwt.sign(
       argData,
       config.get('jwtSecret'),
-      { expiresIn: config.get('jwtExpiration') },
+      { expiresIn: process.env.JWT_EXPIRATION },
       (err, token) => {
         if (err) return reject(err)
         return resolve(token || '')
