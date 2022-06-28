@@ -2,6 +2,8 @@ import { IUsername } from './types'
 import { GetCacheData, SetCacheData } from '../../utils/index'
 import User, { IUser } from '../../models/User'
 import bcrypt from 'bcryptjs'
+import Log from './../../utils/log'
+import { AnyObject } from './../../types/common'
 
 export const FindUser = async (uid: string) => {
   if (!uid) {
@@ -15,9 +17,11 @@ export const FindUser = async (uid: string) => {
 }
 
 export const CheckUser = async (userInfo: IUser) => {
+  Log.debug('CheckUser', userInfo)
   const cacheUser: IUsername = GetCacheData('username.' + userInfo?.username, {
     errorRecord: [],
     lockDate: 0,
+    uid: '',
   })
   // check is it lock
   const now = Date.now()
@@ -34,6 +38,7 @@ export const CheckUser = async (userInfo: IUser) => {
       if (!isMatch) {
         cacheUser.errorRecord.push(now)
         SetCacheData('username.' + userInfo?.username, cacheUser)
+
         const last5Min = now - 5 * 60 * 1000
         const temLen = cacheUser.errorRecord.length || 0
         if (temLen > 3 && cacheUser.errorRecord[temLen - 1] > last5Min) {
@@ -51,7 +56,7 @@ export const CheckUser = async (userInfo: IUser) => {
       return null
     }
   } catch (e) {
-    console.error(e)
+    Log.error('CheckUser', e as AnyObject)
     return Promise.reject(5000)
   }
 }

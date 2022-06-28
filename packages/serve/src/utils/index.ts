@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import { GetJwt } from './jwt'
 import { IUsername } from 'service/user/types'
 import { Msg } from './../msg'
+import Log from './log'
 
 interface ICacheObj {
   username: { [key: string]: IUsername }
@@ -22,7 +23,7 @@ export const ResJson = async (
   if (!token && req.needNewToken) {
     delete req.tokenInfo.exp
     delete req.tokenInfo.iat
-    token = await GetJwt(req.tokenInfo)
+    token = GetJwt(req.tokenInfo)
   }
   // locked user tips
   if (code === 1000) {
@@ -56,11 +57,11 @@ export const SafeData = (
     for (let i = 0; i < temLen - 1; i++) {
       if (typeof argData[temKey[i]] !== 'object') {
         if (argSetValueForce) {
-          console.error(`${temKey[i]} is not object`)
+          Log.error(`${temKey[i]} is not object`)
         }
         return argValue
       }
-      argData = argData[temKey[i]] || {}
+      argData = argData[temKey[i]]
     }
   }
   if (argSetValueForce) {
@@ -79,4 +80,8 @@ export const GetCacheData = (key: string, value: any) => {
 
 export const SetCacheData = (key: string, value: any) => {
   return SafeData(CacheObj, key, value, true)
+}
+
+export const Sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
