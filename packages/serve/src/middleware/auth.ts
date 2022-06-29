@@ -13,7 +13,7 @@ export default function (req: Request, res: Response, next: NextFunction) {
     const tkInfo: any = jwt.verify(token || '', config.get('jwtSecret'))
     // check if token need update
     const remainTime = ((tkInfo?.exp || 1) * 1000 - Date.now()) / 1000
-    if (remainTime < (Number(config.get('jwtExpiration')) || 0) / 2) {
+    if (remainTime < (Number(process.env.JWT_EXPIRATION) || 0) / 2) {
       req.needNewToken = true
     } else {
       req.needNewToken = false

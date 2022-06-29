@@ -1,5 +1,5 @@
-import React from 'react';
-import { Login } from '../../api';
+import React from 'react'
+import { Login } from '../../api'
 
 const LoginPage: React.FC = () => {
   const [username, setUsername] = React.useState<string>('')
@@ -9,29 +9,39 @@ const LoginPage: React.FC = () => {
       username,
       password,
     }
-    const res = await Login(data)?.catch(err => {
-      console.error(err)
+    const res = await Login(data)?.catch((err) => {
+      console.error('Login', err)
     })
     if (res) {
       localStorage.setItem('USER', JSON.stringify(res))
-      window.location.href = "/"
+      window.location.href = window.location.pathname
     }
   }
   return (
-    <div className='flex-center full-h-vh'>
-      <div className='login-input ta-c'>
-        <input type="text" placeholder="Please enter user name" value={username} onChange={(val) => {
-          setUsername(val.target.value)
-        }} />
+    <div className="flex-center full-h-vh">
+      <div className="login-input ta-c">
+        <input
+          type="text"
+          placeholder="Please enter user name"
+          value={username}
+          onChange={(val) => {
+            setUsername(val.target.value)
+          }}
+        />
         <br />
-        <input type="password" placeholder="Please enter password" value={password} onChange={(val) => {
-          setPassword(val.target.value)
-        }} />
-        <div className='mg-t10'>
+        <input
+          type="password"
+          placeholder="Please enter password"
+          value={password}
+          onChange={(val) => {
+            setPassword(val.target.value)
+          }}
+        />
+        <div className="mg-t10">
           <button onClick={login}>login</button>
         </div>
       </div>
     </div>
-  );
+  )
 }
-export default LoginPage;
+export default LoginPage

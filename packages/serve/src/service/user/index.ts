@@ -1,14 +1,20 @@
 import { IUsername } from './types'
-import config from 'config'
 import { GetCacheData, SetCacheData } from '../../utils/index'
 import User, { IUser } from '../../models/User'
 import bcrypt from 'bcryptjs'
+import Log from './../../utils/log'
+import { AnyObject } from './../../types/common'
 
 export const FindUser = async (uid: string) => {
   if (!uid) {
     return null
   }
-  const user = await User.findById(uid).select('-password')
+  const user = await User.findById(uid)
+    .select('-password')
+    .catch((err) => {
+      Log.error(err)
+      return null
+    })
   if (!user) {
     return null
   }
@@ -16,9 +22,11 @@ export const FindUser = async (uid: string) => {
 }
 
 export const CheckUser = async (userInfo: IUser) => {
+  Log.debug('CheckUser', userInfo)
   const cacheUser: IUsername = GetCacheData('username.' + userInfo?.username, {
     errorRecord: [],
     lockDate: 0,
+    uid: '',
   })
   // check is it lock
   const now = Date.now()
@@ -28,18 +36,19 @@ export const CheckUser = async (userInfo: IUser) => {
 
   const { username, password } = userInfo
   try {
-    let user = await User.findOne({ username })
+    const user = await User.findOne({ username })
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password)
       // check 5min 3 error
       if (!isMatch) {
         cacheUser.errorRecord.push(now)
         SetCacheData('username.' + userInfo?.username, cacheUser)
+
         const last5Min = now - 5 * 60 * 1000
         const temLen = cacheUser.errorRecord.length || 0
         if (temLen > 3 && cacheUser.errorRecord[temLen - 1] > last5Min) {
           cacheUser.lockDate =
-            now + Number(config.get('lockExpiration') || 1) * 1000
+            now + Number(process.env.LOCK_EXPIRATION || 1) * 1000
           cacheUser.errorRecord = []
           SetCacheData('username.' + userInfo?.username, cacheUser)
           return Promise.reject(1000)
@@ -52,7 +61,8 @@ export const CheckUser = async (userInfo: IUser) => {
       return null
     }
   } catch (e) {
-    return Promise.reject(1003)
+    Log.error('CheckUser', e as AnyObject)
+    return Promise.reject(5000)
   }
 }
 

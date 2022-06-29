@@ -18,16 +18,22 @@ router.all(
     ).isLength({ min: 6, max: 30 }),
   ],
   async (req: Request, res: Response) => {
+    let params = req.body
+    if (req.method === 'GET') {
+      params = req.query
+    } else if (req.method === 'POST') {
+      params = req.body
+    }
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       ResJson(req, res, {}, 4000, errors.array()[0].msg)
       return
     }
     try {
-      let user = await CheckUser(req.body)
+      let user = await CheckUser(params)
       let code = 0
       if (!user) {
-        user = await CreateUser(req.body, req.ip)
+        user = await CreateUser(params, req.ip)
         code = 1
       } else {
         user.lastLogin = Date.now()
@@ -38,7 +44,7 @@ router.all(
       ResJson(req, res, user, code, '', token)
       return
     } catch (e) {
-      ResJson(req, res, {}, Number(e))
+      ResJson(req, res, {}, Number(e) || 5000)
       return
     }
   }
