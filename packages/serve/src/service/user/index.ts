@@ -9,7 +9,12 @@ export const FindUser = async (uid: string) => {
   if (!uid) {
     return null
   }
-  const user = await User.findById(uid).select('-password')
+  const user = await User.findById(uid)
+    .select('-password')
+    .catch((err) => {
+      Log.error(err)
+      return null
+    })
   if (!user) {
     return null
   }

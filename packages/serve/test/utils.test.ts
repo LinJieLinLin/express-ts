@@ -1,11 +1,10 @@
 import { ConnectDb, CloseDb } from '../src/utils/db'
 import { GetJwt } from '../src/utils/jwt'
 import * as index from '../src/utils/index'
-import { Sleep } from '../../web/src/utils/project'
 import { AnyObject } from '../src/types/common'
 
 jest.mock('../src/utils/log')
-jest.useFakeTimers()
+// jest.useFakeTimers()
 // jest.setTimeout(20000)
 
 const ENV = process.env
@@ -15,7 +14,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   console.log('afterAll')
-  Sleep(10000)
   jest.clearAllTimers()
   process.env = ENV
 })
@@ -95,10 +93,6 @@ describe('index', () => {
     expect(fn(obj, 'c')).toBe(0)
     expect(fn(obj, 'c', '')).toBe('')
     expect(fn(obj, 'a', 'a', true)).toBe('a')
-  })
-  it('Sleep', async () => {
-    const fn = index.Sleep
-    expect(fn(1000)).resolves.toBe(true)
   })
   it('SetCacheData', async () => {
     const fn = index.SetCacheData

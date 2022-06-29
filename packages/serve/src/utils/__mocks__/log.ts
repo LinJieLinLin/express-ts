@@ -1,6 +1,6 @@
 const Log = {
   log: (msg: string, obj?: object) => {
-    console.log(msg || obj)
+    if (!msg) console.log(msg || obj)
   },
   info: (msg: string, obj?: object) => {
     console.log(msg || obj)

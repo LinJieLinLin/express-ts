@@ -23,7 +23,7 @@ export const ResJson = async (
   if (!token && req.needNewToken) {
     delete req.tokenInfo.exp
     delete req.tokenInfo.iat
-    token = GetJwt(req.tokenInfo)
+    token = await GetJwt(req.tokenInfo)
   }
   // locked user tips
   if (code === 1000) {
@@ -82,6 +82,6 @@ export const SetCacheData = (key: string, value: any) => {
   return SafeData(CacheObj, key, value, true)
 }
 
-export const Sleep = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
+// export const Sleep = (ms: number) => {
+//   return new Promise((resolve) => setTimeout(resolve, ms))
+// }

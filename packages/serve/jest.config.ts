@@ -6,28 +6,27 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  coverageDirectory: 'coverage',
+  coverageDirectory: '../web/build/coverage',
   moduleNameMapper: {
     '@/([^\\.]*)$': '<rootDir>/$1',
   },
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
-  detectOpenHandles: false,
-  forceExit: false,
+  detectOpenHandles: true,
+  forceExit: true,
   verbose: true,
   clearMocks: true,
-  resetModules: true,
   coverageProvider: 'v8',
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
-  // reporters: [
-  //   'default',
-  //   [
-  //     'jest-html-reporters',
-  //     {
-  //       publicPath: './dist/coverage',
-  //       filename: 'index.html',
-  //       openReport: false,
-  //     },
-  //   ],
-  // ],
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '../web/build/coverage',
+        filename: 'index.html',
+        openReport: false,
+      },
+    ],
+  ],
   collectCoverage: true,
 }

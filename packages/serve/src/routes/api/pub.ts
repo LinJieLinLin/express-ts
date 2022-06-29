@@ -39,7 +39,7 @@ router.all(
         user.lastLogin = Date.now()
         user.save()
       }
-      const token = GetJwt({ uid: String(user._id) })
+      const token = await GetJwt({ uid: String(user._id) })
       user.password = ''
       ResJson(req, res, user, code, '', token)
       return
