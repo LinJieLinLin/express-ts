@@ -1,0 +1,39 @@
+version: '1.0'
+
+services:
+  serve:
+    build:
+      context: .
+      dockerfile: ./packages/serve/Dockerfile
+    volumes:
+      - ./packages/serve:/serve
+    command: /usr/local/wait-for-it.sh mongo:27017 -- bash -c "yarn && yarn dev"
+    env_file:
+      - /packages/serve/.env.development
+    ports:
+      - 3001:3001
+    networks:
+      - webnet
+    depends_on:
+      - mongo
+  web:
+    build:
+      context: .
+      dockerfile: ./packages/web/Dockerfile
+    volumes:
+      - ./packages/web:/web
+    command: bash -c "yarn && yarn dev"
+    ports:
+      - 3002:3002
+    networks:
+      - webnet
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    networks:
+      - webnet
+    volumes:
+      - ./data:/data/db
+networks:
+  webnet:

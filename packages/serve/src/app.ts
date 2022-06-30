@@ -21,7 +21,7 @@ export const createApp = () => {
   app.set('nodeEnv', process.env.NODE_ENV || 8080)
 
   app.get('/', (_req, res) => {
-    res.send('API Running')
+    res.send('API Running!')
   })
   // middleware
   app.use(bodyParser.json())

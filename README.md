@@ -3,17 +3,18 @@
 ## Installation
 
 ```shell
-npm i pnpm -g
-pnpm initPro
+npm i yarn -g
+yarn initPro
 ```
 
 ## dev Env
 
-| Env    | Version |
-| ------ | ------- |
-| system | win11   |
-| node   | 16.x    |
-| pnpm   | 7.x     |
+| Env            | Version |
+| -------------- | ------- |
+| system         | win11   |
+| node           | 16.\*   |
+| yarn           | 1.22.\* |
+| docker desktop | 4.9.1   |
 
 ## Description
 
@@ -26,6 +27,30 @@ pnpm initPro
 
 - [report](https://linjielinlin.github.io/express-ts/coverage/)
 - [coverage](https://linjielinlin.github.io/express-ts/coverage/lcov-report/index.html)
+
+## Docker
+
+Start the services
+
+```sh
+docker-compose up -d
+```
+
+Local view:
+
+[serve: http://localhost:3001](http://localhost:3001)
+
+[web: http://localhost:3002](http://localhost:3002)
+
+View the logs
+
+```sh
+docker-compose logs -f
+```
+
+## License
+
+Apache2.0
 
 ## Contribution
 
