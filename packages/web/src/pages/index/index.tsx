@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 const Index: React.FC = () => {
   const logout = () => {
     localStorage.setItem('tk', '')
-    window.location.href = "#/login"
+    window.location.href = '#/login'
   }
   const [user, setUser] = useState<{ [key: string]: string }>({})
   useEffect(() => {
@@ -11,10 +11,10 @@ const Index: React.FC = () => {
     setUser(u)
   }, [])
   return (
-    <div className='ta-c'>
+    <div className="ta-c pIndex">
       <p>hello {user?.username}</p>
       <button onClick={logout}>Logout</button>
     </div>
-  );
+  )
 }
-export default Index;
+export default Index

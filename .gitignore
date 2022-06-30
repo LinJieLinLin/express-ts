@@ -115,3 +115,6 @@ dist
 .pnp.*
 **/pnpm-lock.yaml
 /data
+/packages/web/tests/puppeteer/report
+/packages/serve/yarn.lock
+/packages/web/yarn.lock

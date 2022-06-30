@@ -6,8 +6,7 @@
     "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "t": "jest tests/puppeteer/specs/",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "dependencies": {

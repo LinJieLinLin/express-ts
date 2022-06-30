@@ -11,6 +11,12 @@
     "typescript",
     "mongoose"
   ],
+  "config": {
+    "mongodbMemoryServer": {
+      "debug": "0",
+      "version": "latest"
+    }
+  },
   "scripts": {
     "tsc": "tsc",
     "build": "rimraf dist && tsc -b && cp .env* dist && cp -rf ./config dist",
