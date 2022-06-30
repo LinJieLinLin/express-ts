@@ -13,8 +13,7 @@
   ],
   "config": {
     "mongodbMemoryServer": {
-      "debug": "1",
-      "version": "latest"
+      "debug": "0"
     }
   },
   "scripts": {
