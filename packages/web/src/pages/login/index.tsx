@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
     }
   }
   return (
-    <div className="flex-center full-h-vh">
+    <div className="flex-center full-h-vh pLogin">
       <div className="login-input ta-c">
         <input
           type="text"

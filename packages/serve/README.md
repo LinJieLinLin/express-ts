@@ -6,14 +6,14 @@
 
 ```shell
 cd packages/serve
-npm i pnpm -g
-pnpm i
+npm i yarn -g
+yarn
 ```
 
 ## Run
 
 ```shell
-pnpm dev
+yarn dev
 ```
 
 ## Contribution

@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "postinstall": "npx husky install",
-    "initPro": "pnpm i && cd packages/serve/ && pnpm i && cd ../web && pnpm i",
+    "initPro": "yarn && cd packages/serve/ && yarn && cd ../web && yarn",
+    "startWeb": "cd packages/web && yarn start",
     "lint": "eslint ./packages/**/src/**/*"
   },
   "devDependencies": {

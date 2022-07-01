@@ -11,7 +11,7 @@ const Index: React.FC = () => {
     setUser(u)
   }, [])
   return (
-    <div className='ta-c'>
+    <div className='ta-c pIndex'>
       <p>hello {user?.username}</p>
       <button onClick={logout}>Logout</button>
     </div>

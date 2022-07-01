@@ -6,6 +6,7 @@ name: Build web to github page
 on:
   push:
     branches:
+      - dev
       - master
 jobs:
   build-page:

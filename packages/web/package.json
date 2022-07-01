@@ -6,9 +6,7 @@
     "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "t": "jest tests/puppeteer/specs/",
-    "eject": "react-scripts eject"
+    "test": "jest"
   },
   "dependencies": {
     "flyio": "^0.6.14",

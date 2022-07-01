@@ -11,6 +11,11 @@
     "typescript",
     "mongoose"
   ],
+  "config": {
+    "mongodbMemoryServer": {
+      "debug": "0"
+    }
+  },
   "scripts": {
     "tsc": "tsc",
     "build": "rimraf dist && tsc -b && cp .env* dist && cp -rf ./config dist",
@@ -18,7 +23,8 @@
     "start": "cross-env NODE_ENV=development ts-node src/server.ts",
     "lint": "eslint",
     "test": "cross-env NODE_ENV=test jest",
-    "coverage": "cross-env NODE_ENV=test rimraf coverage && jest --coverage --silent --detectOpenHandles --forceExit"
+    "testUtils": "cross-env NODE_ENV=test jest ./test/utils.test.ts",
+    "testApp": "cross-env NODE_ENV=test jest ./test/app.test.ts"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
