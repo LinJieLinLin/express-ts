@@ -21,7 +21,11 @@ yarn initPro
 - [express-ts-server](https://github.com/LinJieLinLin/express-ts/blob/master/packages/serve/README.md)
 - [express-ts-web](https://github.com/LinJieLinLin/express-ts/blob/master/packages/web/README.md)
 
-## web：[demo](https://linjielinlin.github.io/express-ts)
+## webDemo
+
+[https://linjielinlin.github.io/express-ts](https://linjielinlin.github.io/express-ts)
+
+[https://www.lj4.top/express-ts/](https://www.lj4.top/express-ts/)
 
 ## Test
 

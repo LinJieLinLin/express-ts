@@ -5,7 +5,7 @@
 
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-node',
   // coverageDirectory: '../web/build/coverage',
   moduleNameMapper: {
     '@/([^\\.]*)$': '<rootDir>/$1',
