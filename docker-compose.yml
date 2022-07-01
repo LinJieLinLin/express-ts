@@ -1,4 +1,4 @@
-version: '1.0'
+version: '3.3'
 
 services:
   serve:
@@ -7,9 +7,10 @@ services:
       dockerfile: ./packages/serve/Dockerfile
     volumes:
       - ./packages/serve:/serve
-    command: /usr/local/wait-for-it.sh mongo:27017 -- bash -c "yarn && yarn dev"
+      - ./dockerNodeModules/serve:/serve/node_modules
+    command: bash -c "yarn && yarn dev"
     env_file:
-      - /packages/serve/.env.development
+      - ./packages/serve/.env.development
     ports:
       - 3001:3001
     networks:
@@ -22,6 +23,7 @@ services:
       dockerfile: ./packages/web/Dockerfile
     volumes:
       - ./packages/web:/web
+      - ./dockerNodeModules/web:/web/node_modules
     command: bash -c "yarn && yarn dev"
     ports:
       - 3002:3002
