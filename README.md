@@ -5,6 +5,9 @@
 ```shell
 npm i yarn -g
 yarn initPro
+# need set DATABASE_URL in /packages/serve/.env.development first
+yarn startServe
+yarn startWeb
 ```
 
 ## dev Env

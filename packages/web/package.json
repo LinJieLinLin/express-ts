@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "start": "react-scripts start",
+    "startDocker": "dotenv -e .env.docker react-scripts start",
     "build": "react-scripts build",
     "test": "jest"
   },
@@ -30,6 +31,7 @@
     "@types/node": "^16.11.41",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "dotenv-cli": "^5.1.0",
     "jest": "^28.1.1",
     "jest-html-reporters": "^3.0.9",
     "puppeteer": "^15.1.1",
