@@ -8,14 +8,14 @@ const router: Router = Router()
 router.all(
   '/login',
   [
-    check('username', 'Please include a valid username').isLength({
+    check('username', 'Please enter a username with 6-30 characters').isLength({
       min: 1,
       max: 30,
     }),
-    check(
-      'password',
-      'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6, max: 30 }),
+    check('password', 'Please enter a password with 6-30 characters').isLength({
+      min: 6,
+      max: 30,
+    }),
   ],
   async (req: Request, res: Response) => {
     let params = req.body

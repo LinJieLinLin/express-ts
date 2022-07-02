@@ -119,3 +119,4 @@ dist
 /packages/serve/yarn.lock
 /packages/web/yarn.lock
 /dockerNodeModules
+packages/serve/*-audit.json
