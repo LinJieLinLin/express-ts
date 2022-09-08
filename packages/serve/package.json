@@ -60,6 +60,8 @@
     "@types/supertest": "^2.0.12",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
+    "esbuild": "^0.15.7",
+    "esbuild-node-tsc": "^2.0.2",
     "flyio": "^0.6.14",
     "jest": "^28.1.1",
     "jest-html-reporters": "^3.0.9",
